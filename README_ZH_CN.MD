@@ -29,7 +29,7 @@ console.log(hardware.getCpuinfo());
   cpuid: 'BFCBFBFF000B0671'
 }
 ```
-## 真实网址MAC地址
+## 真实网卡MAC地址
 ```javascript
 const hardware=require("node-hardware");
 console.log(hardware.getMacAddress());
