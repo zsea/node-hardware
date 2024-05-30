@@ -7,6 +7,9 @@ const os = require('os')
 let pre = "node";
 
 (async () => {
+    if(os.platform()==='linux'&&process.arch==="arm64"){
+        return;
+    }
     const packagePath = path.join(process.env["INIT_CWD"], "package.json");
     const package = require(packagePath);
     

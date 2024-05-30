@@ -1,7 +1,11 @@
 const arch = process.arch
     ,os = require('os')
 ;
-const hardware = require(`./hardware-${os.platform()}-${arch}.node`);
+let packageName=`./hardware-${os.platform()}-${arch}.node`;
+if(os.platform()==='linux'&&arch==="arm64"){
+    packageName="./libs/hardware-linux-arm64.js"
+}
+const hardware = require(packageName);
 const h = {
     /**
      * get version no.
