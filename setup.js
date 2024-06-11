@@ -7,29 +7,32 @@ const os = require('os')
 let pre = "node";
 
 (async () => {
-    if(os.platform()==='linux'&&process.arch==="arm64"){
+    if (os.platform() === 'linux' && process.arch === "arm64") {
         return;
     }
-    const packagePath = path.join(process.env["INIT_CWD"], "package.json");
+    const packagePath = path.join(process.env["INIT_CWD"] || __dirname, "package.json");
     const package = require(packagePath);
-    
-    
+
+
     if ((package.devDependencies && package.devDependencies.electron)
         || (package.dependencies && package.dependencies.electron)) {
         pre = "electron";
     }
     //throw new Error(pre);
     const fileUrl = `https://raw.githubusercontent.com/zsea/node-hardware-bin/master/${pre}-hardware-${os.platform()}-${process.arch}.node`;
-    const downloader = new Downloader({
+    const options = {
         url: fileUrl,
         directory: "./",
         cloneFiles: false,
-        fileName:`hardware-${os.platform()}-${process.arch}.node`,
-        proxy: process.env["npm_config_https_proxy"],
+        fileName: `hardware-${os.platform()}-${process.arch}.node`,
         onProgress: function (percentage, chunk, remainingSize) {
             log(`Downloading ${percentage}% ${fileUrl}\n`);
         },
-    });
+    }
+    if (typeof process.env["npm_config_https_proxy"]==="string") {
+        options["proxy"] = process.env["npm_config_https_proxy"];
+    }
+    const downloader = new Downloader(options);
 
     try {
         await downloader.download();
