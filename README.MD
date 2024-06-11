@@ -1,6 +1,11 @@
 [简体中文](./README_ZH_CN.MD)
 
-> Note: Currently, only the ```win32-x64``` platform is supported.
+# Supported Platforms
+
+* windows(ia32/x64)
+* Linux(x64/arm64)
+
+> Supported for use in ```electron```.
 
 ### Obtain computer hardware information:
 * CPU
@@ -29,7 +34,7 @@ Result
   cpuid: 'BFCBFBFF000B0671'
 }
 ```
-
+If the architecture is Linux x64, you can pass the argument ```false``` to not return the ```cpuid``` information.
 ### Real MAC Address
 ```javascript
 const hardware = require("node-hardware");
@@ -81,6 +86,7 @@ Result
 
 > The field `isSystem` indicates whether the current disk is the system disk.
 
+> In Linux, only the disk information of types `sd` and `nvme` has been obtained.
 ### Licensing
 
 If your process name is `node.exe` or `electron.exe`, your use will be unrestricted. Otherwise, you need to purchase a **License** to use it.
@@ -91,3 +97,5 @@ console.log(hardware.setLicense("..."));
 ```
 
 If the **License** is valid, it will return `true`.
+
+> Note: Authorization is only required when calling functions within the ```addon```, such as information that can be obtained from ```fssys```. Authorization is not needed when making the API call.
