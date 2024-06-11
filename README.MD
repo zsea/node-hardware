@@ -98,4 +98,4 @@ console.log(hardware.setLicense("..."));
 
 If the **License** is valid, it will return `true`.
 
-> Note: Authorization is only required when calling functions within the ```addon```, such as information that can be obtained from ```fssys```. Authorization is not needed when making the API call.
+> Note: Authorization is required only when it is necessary to invoke functions within the ```addon```, such as information that can be obtained from ```fssys```, and is not required when calling the interface.
