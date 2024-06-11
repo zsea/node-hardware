@@ -1,9 +1,15 @@
 const arch = process.arch
-    ,os = require('os')
-;
-let packageName=`./hardware-${os.platform()}-${arch}.node`;
-if(os.platform()==='linux'&&arch==="arm64"){
-    packageName="./libs/hardware-linux-arm64.js"
+    , os = require('os')
+    ;
+let packageName = `./hardware-${os.platform()}-${arch}.node`;
+if (os.platform() === 'linux') {
+    if (arch === "arm64") {
+        packageName = "./libs/hardware-linux-arm64.js"
+    }
+    else if (arch === "x64") {
+        packageName = "./libs/hardware-linux-x64.js"
+    }
+
 }
 const hardware = require(packageName);
 const h = {
@@ -34,7 +40,7 @@ const h = {
      * 
      * @returns Object
      */
-    getDiskInformation(){
+    getDiskInformation() {
         return hardware.getDiskInformation()
     },
     /**
@@ -42,7 +48,7 @@ const h = {
      * @param {string} license 
      * @returns boolean
      */
-    setLicense(license){
+    setLicense(license) {
         return hardware.setLicense(license);
     }
 }
