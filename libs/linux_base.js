@@ -11,7 +11,16 @@ function getCpuinfo() {
         const kv = item.split(':').map(x => x.trim());
         if (kv[0] === 'model name') {
             info["model"] = kv[1];
-            break;
+            if (info["vendor"]) {
+                break;
+            }
+
+        }
+        else if (kv[0] === 'vendor_id') {
+            info["vendor"] = kv[1];
+            if (info["model"]) {
+                break;
+            }
         }
     }
 
