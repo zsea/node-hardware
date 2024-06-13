@@ -1,7 +1,6 @@
 const Downloader = require("nodejs-file-downloader");
 const os = require('os')
     , path = require("path")
-    , fs = require("fs").promises
     , log = require('single-line-log').stdout
     ;
 let pre = "node";
