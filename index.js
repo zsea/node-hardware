@@ -9,6 +9,9 @@ if (os.platform() === 'linux') {
     else if (arch === "x64") {
         packageName = "./libs/hardware-linux-x64.js"
     }
+    else if(arch === "loong64") {
+        packageName = "./libs/hardware-linux-loong64.js"
+    }  
 
 }
 const hardware = require(packageName);
