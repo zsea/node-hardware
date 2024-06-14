@@ -3,8 +3,7 @@ const os = require('os')
     , path = require("path")
     , log = require('single-line-log').stdout
     ;
-let pre = "node";
-
+let pre = process.argv[2] || "node";
 (async () => {
     if (os.platform() === 'linux' && process.arch === "arm64") {
         return;
@@ -19,6 +18,7 @@ let pre = "node";
     }
     //throw new Error(pre);
     const fileUrl = `https://raw.githubusercontent.com/zsea/node-hardware-bin/master/${pre}-hardware-${os.platform()}-${process.arch}.node`;
+    log(`Downloading ${0}% ${fileUrl}\n`);
     const options = {
         url: fileUrl,
         directory: "./",
@@ -28,7 +28,7 @@ let pre = "node";
             log(`Downloading ${percentage}% ${fileUrl}\n`);
         },
     }
-    if (typeof process.env["npm_config_https_proxy"]==="string") {
+    if (typeof process.env["npm_config_https_proxy"] === "string") {
         options["proxy"] = process.env["npm_config_https_proxy"];
     }
     const downloader = new Downloader(options);

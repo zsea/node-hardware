@@ -3,7 +3,7 @@
 # Supported Platforms
 
 * windows(ia32/x64)
-* Linux(x64/arm64)
+* Linux(x64/arm64/loong64)
 
 > Supported for use in ```electron```.
 

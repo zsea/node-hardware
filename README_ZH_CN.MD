@@ -3,7 +3,7 @@
 # 支持平台
 
 * windows(ia32/x64)
-* Linux(x64/arm64)
+* Linux(x64/arm64/loong64)
 
 > 支持在```electron```中使用。
 
